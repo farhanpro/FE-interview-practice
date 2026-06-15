@@ -43,8 +43,8 @@ function App() {
       <main>
          {/* <Counter />  */}
         {/* <ClickOutsideDropdown /> */}
-        <InlineEditableInput />
-        {/* <TempConverter /> */}
+        {/* <InlineEditableInput /> */}
+        <TempConverter />
         {/* <OtpInput /> */}
         {/* <FormValidation /> */}
         {/* <FlipCardOnlyUsingCss /> */}
