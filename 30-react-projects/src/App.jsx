@@ -41,10 +41,10 @@ function App() {
         </div>
       </header>
       <main>
-         {/* <Counter />  */}
+         <Counter /> 
         {/* <ClickOutsideDropdown /> */}
         {/* <InlineEditableInput /> */}
-        <TempConverter />
+        {/* <TempConverter /> */}
         {/* <OtpInput /> */}
         {/* <FormValidation /> */}
         {/* <FlipCardOnlyUsingCss /> */}
