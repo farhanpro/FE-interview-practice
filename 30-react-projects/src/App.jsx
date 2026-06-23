@@ -41,8 +41,8 @@ function App() {
         </div>
       </header>
       <main>
-         <Counter /> 
-        {/* <ClickOutsideDropdown /> */}
+         {/* <Counter />  */}
+        <ClickOutsideDropdown />
         {/* <InlineEditableInput /> */}
         {/* <TempConverter /> */}
         {/* <OtpInput /> */}
