@@ -28,6 +28,7 @@ import FormValidation from "./components/projects/6.form-validation";
 import FlipCardOnlyUsingCss from "./components/projects/7.flip-card";
 import CustomKeyboardTab from "./components/projects/8.custom-keyboard-tab";
 import FlatArray from "./components/projects/9.flat-array";
+import SearchBar from "./components/projects/searchbar";
 import ProductProvider from "./context/product-context";
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
       </header>
       <main>
          {/* <Counter />  */}
-        <ClickOutsideDropdown />
+        {/* <ClickOutsideDropdown /> */}
         {/* <InlineEditableInput /> */}
         {/* <TempConverter /> */}
         {/* <OtpInput /> */}
@@ -73,6 +74,7 @@ function App() {
         {/* <DynamicForm /> */}
         {/* <FileExplorer /> */}
         {/* <StickySidebar /> */}
+        <SearchBar/>
       </main>
     </div>
   );

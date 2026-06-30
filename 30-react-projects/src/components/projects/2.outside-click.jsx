@@ -1,4 +1,4 @@
-//import { ChevronDown } from "lucide-react";
+// import { ChevronDown } from "lucide-react";
 // import { useState ,useRef, useEffect} from "react"
 // import { Button } from "../ui/button";
 
@@ -21,11 +21,7 @@
 
 //   return ()=>{
 //     document.removeEventListener('mousedown',(event)=>{
-//     if(dropDownRef.current && !dropDownRef.current.contains(event.target))
-//     {
-//      //  console.log(event.target,dropDownRef.current);
-//         setIsOpen(false);
-//       }
+//     if(dropDownRef.current && !dropDownRef.current.contains(event.target)){setIsOpen(false)}
 //   })
 // };
 //  },[isOpen])
@@ -60,52 +56,53 @@
 // }
 // export default ClickOutsideDropdown;
 
-import { ChevronDown } from 'lucide-react';
-import { useState,useRef,useEffect } from 'react'
-import { Button } from '../ui/button'
 
+import { ChevronDown } from "lucide-react";
+import { useState,useEffect,useRef } from "react";
+import { Button } from "../ui/button";
 
 const ClickOutsideDropdown = ()=>{
   const [isOpen,setIsOpen] = useState(false);
   const dropDownRef = useRef(null);
-  const toggleDropdowm = ()=> setIsOpen(!isOpen);
+  const toggleDropdown = ()=> setIsOpen(!isOpen);
 
   useEffect(()=>{
     if(!isOpen) return;
-    const handleClickOutside =(event)=>{
-    
+
+    document.addEventListener('mousedown',(event)=>{
       if(dropDownRef.current && !dropDownRef.current.contains(event.target))
       {
-        setIsOpen(false)
+        setIsOpen(false);
       }
-    }
-    document.addEventListener('mousedown',handleClickOutside);
+    })
     return()=>{
-      document.removeEventListener('mousedown',handleClickOutside);
+      document.removeEventListener('mousedown',(event)=>{
+        if(dropDownRef.current && !dropDownRef.current.contains(event.target)){setIsOpen(false)}
+      })
     }
   },[isOpen])
 
   return(
-    <div className='flex flex-col pt-[150px] justify-center bg-gray-50'>
-      <h1> Close Dropdown on Outside Click</h1>
-      <div className='relative mt-6 ref={dropdownRef}'> 
-
-      <Button onClick={toggleDropdowm} variant={'outlined'} className={'w-full justify-between'}>
-        Select an Option
-        <ChevronDown className={`ml-2 h-4 w-4 ${isOpen ? 'rotate-180':''}`}/>
+    <div className="flex flex-col pt-[150px] justify-center bg-gray-50">
+    <h1> Close DropDown on OutSide Click</h1>
+    <div className="relative mt-6" ref={dropDownRef}>
+      <Button onClick={toggleDropdown} variant={'outlined'} className={'w-full justify-between'}>
+        Select an option
+        <ChevronDown className={`ml-2 h-4 w-4`}/>
       </Button>
       {isOpen &&(
-        <div className='absolute mt-2 w-full rounded-md border bg-background z-10 shadow-lg'>
-        <div className='py-1' onClick={toggleDropdowm}>
+        <div className="absolute mt-2 w-full rounded-md border bg-background z-10 shadow-lg">
+        <div className="py-1" onClick={toggleDropdown}>
           {
-            [`Option 1`,`Option 2`,`Option 3`].map((option,index)=>(
-              <button key={index} className='block w-full px-4 py-2 text-left text-sm hover:bg-mutate'>{option}</button>
+            [`opotion1`,`option2`,`option3`].map((option,index)=>(
+              <button key={index} className="block w-full px-4 py-2 text-left text-sm hover:bg-mutate ">{option}</button>
             ))
           }
         </div>
         </div>
       )}
-      </div>
+    </div>
+
     </div>
   )
 }
