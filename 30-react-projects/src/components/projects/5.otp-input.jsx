@@ -1,64 +1,44 @@
 import { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { use } from "framer-motion/m";
 
 function OtpInput() {
-  const OTP_LENGTH = 4;
+    const OTP_Digits_COUNT = 5 ;
+    const [otpInput,setOtpInput] = useState(new Array(OTP_Digits_COUNT).fill(""));
+    const refArr = useRef([]);
 
-  const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(""));
+    const handleonChange =(value,index)=> {
+      if(isNaN(value)) return;
+      
+      console.log(value);
+      const newValue = value.trim();
+      const newArr = [... otpInput];
+      newArr[index] = newValue.slice(-1);
+      setOtpInput(newArr);
 
-  const inputRefs = useRef([]);
+     newValue &&  refArr.current[index +1]?.focus()
 
-  //ensure that inputrefs has refernces up to otp length
-  useEffect(() => {
-    inputRefs.current = inputRefs.current.slice(0, OTP_LENGTH);
-  }, []);
-
-  const handleOtpChange = (getCurrentInputIndex, getCurrentInputValue) => {
-    if (getCurrentInputValue.length > 1) {
-      getCurrentInputValue = getCurrentInputValue.slice(-1);
     }
 
-    const newOtp = [...otp];
-    newOtp[getCurrentInputIndex] = getCurrentInputValue;
+    const handleOnKeyDown = (e,index)=>{
+      if(!e.target.value && e.key === 'Backspace'){
+        refArr.current[index -1]?.focus();}
+      }
+    
 
-    setOtp(newOtp);
+    useEffect(()=>{refArr.current[0]?.focus()},[]);
 
-    if (getCurrentInputValue && getCurrentInputIndex < OTP_LENGTH - 1) {
-      inputRefs.current[getCurrentInputIndex + 1]?.focus();
-    }
-  };
+    return(
+      <div className="container">
+        <h1>OTP Input</h1>
+        <div className="flex mt-2 justify-center">
+        {otpInput.map((item,key)=><input className="w-[20px] h-[20px] border-2" value={otpInput[item]} onChange={(e)=> handleonChange(e)}/>)}
 
-  const handleKeyDown = (index, event) => {
-    if (event.key === "Backspace" && !otp[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus();
-    }
-  };
-
-  return (
-    <div className="flex flex-col pt-[150px] justify-center bg-gray-50">
-      <h1>OTP Input</h1>
-      <div className="flex mt-10 mb-5 justify-center gap-2">
-        {otp.map((digit, index) => (
-          <Input
-            key={index}
-            type="text"
-            inputMode="numeric"
-            maxLength={1}
-            value={digit}
-            onChange={(event) => handleOtpChange(index, event.target.value)}
-            onKeyDown={(event) => handleKeyDown(index, event)}
-            className="w-12 h-12 text-center text-lg"
-            autoFocus={index === 0}
-            ref={(el) => {
-              inputRefs.current[index] = el; //store ref focus
-            }}
-          />
-        ))}
-      </div>
-      <Button disabled={otp.some((digit) => digit === "")}>Verify</Button>
-    </div>
-  );
+        </div>
+      
+      </div>  
+    )
 }
 
 export default OtpInput;

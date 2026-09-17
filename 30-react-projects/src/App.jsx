@@ -31,6 +31,7 @@ import FlatArray from "./components/projects/9.flat-array";
 import Accordian from "./components/projects/Accordian";
 import SearchBar from "./components/projects/searchbar";
 import SearchBar2 from "./components/projects/searchBar2";
+import SearchBar3 from "./components/projects/searchbar3";
 import ProductProvider from "./context/product-context";
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
         {/* <ClickOutsideDropdown /> */}
         {/* <InlineEditableInput /> */}
         {/* <TempConverter /> */}
-        {/* <OtpInput /> */}
+        <OtpInput />
         {/* <FormValidation /> */}
         {/* <FlipCardOnlyUsingCss /> */}
         {/* <CustomKeyboardTab /> */}
@@ -78,7 +79,8 @@ function App() {
         {/* <StickySidebar /> */}
         {/* <SearchBar/> */}
         {/* <SearchBar2/> */}
-        <Accordian/>
+        {/* <Accordian/> */}
+        {/* <SearchBar3/> */}
       </main>
     </div>
   );
